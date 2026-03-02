@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "generate-map": "deno run --allow-read --allow-write generate-map.ts",
+    "get-templates": "deno run --allow-net get-templates.ts",
+    "import": "deno run --allow-read --allow-net import.ts"
+  }
+}
