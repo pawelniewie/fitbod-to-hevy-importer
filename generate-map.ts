@@ -34,7 +34,9 @@ function generateExerciseMapTemplate() {
   }
 
   let fileContent = `// exercise-map.ts\n`;
-  fileContent += `// Replace the empty strings with your actual Hevy exercise_template_ids from get-templates.ts\n\n`;
+  fileContent += `// Run generate-template-list.ts first, then fill in each value using HEVY_EXERCISES.KEY\n`;
+  fileContent += `// e.g. "Running": HEVY_EXERCISES.RUNNING\n`;
+  fileContent += `import { HEVY_EXERCISES } from './HEVY_EXERCISES.ts';\n\n`;
   fileContent += `export const EXERCISE_MAP: Record<string, string> = {\n`;
 
   for (const ex of uniqueExercises) {

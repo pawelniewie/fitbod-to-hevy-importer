@@ -1,13 +1,15 @@
 // exercise-map.ts
-// Replace the empty strings with your actual Hevy exercise_template_ids from get-templates.ts
+// Run generate-template-list.ts first, then fill in each value using HEVY_EXERCISES.KEY
+// e.g. "Running": H.RUNNING
+import { HEVY_EXERCISES as H } from './HEVY_EXERCISES.ts';
 
 export const EXERCISE_MAP: Record<string, string> = {
-  "Running": "",
-  "Rowing": "",
-  "Dumbbell Row": "",
-  "Dumbbell Bicep Curl": "",
-  "Dumbbell Skullcrusher": "",
-  "Dumbbell Fly": "",
+  "Running": H.RUNNING,
+  "Rowing": H.ROWING,
+  "Dumbbell Row": H.DUMBBELL_ROW,
+  "Dumbbell Bicep Curl": H.DUMBBELL_BICEP_CURL,
+  "Dumbbell Skullcrusher": H.DUMBBELL_SKULLCRUSHER,
+  "Dumbbell Fly": H.DUMBBELL_FLY,
   "Dumbbell Incline Bench Press": "",
   "Bench Dip": "",
   "Dumbbell Goblet Squat": "",

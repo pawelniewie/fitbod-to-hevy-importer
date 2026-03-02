@@ -26,31 +26,45 @@ HEVY_API_KEY=your_api_key_here
 
 ### Step 1 — Generate the exercise map template
 
-Reads your CSV and outputs an `exercise-map.ts` file listing every unique exercise name:
+Reads your CSV and outputs `exercise-map.ts` listing every unique exercise name:
 
 ```sh
 deno task generate-map
 ```
 
-### Step 2 — Get your Hevy exercise template IDs
+### Step 2 — Generate the Hevy exercise list
 
-Fetches all exercise templates from your Hevy account and prints them as mappable key/value pairs:
+Fetches all exercise templates from your Hevy account and writes `HEVY_EXERCISES.ts`, a typed constant with ALL_CAPS keys mapping to Hevy template IDs:
 
 ```sh
-deno task get-templates
+deno task generate-template-list
+```
+
+This produces entries like:
+
+```ts
+export const HEVY_EXERCISES: Record<string, string> = {
+  RUNNING: "abc123-...",
+  DUMBBELL_ROW: "def456-...",
+  // ...
+};
 ```
 
 ### Step 3 — Fill in the exercise map
 
-Open `exercise-map.ts` and paste in the Hevy template ID for each exercise. Any exercise left as an empty string will be skipped during import.
+Open `exercise-map.ts` and set each value to the matching `HEVY_EXERCISES` constant. Use your editor's autocomplete to browse available keys:
 
 ```ts
+import { HEVY_EXERCISES } from './HEVY_EXERCISES.ts';
+
 export const EXERCISE_MAP: Record<string, string> = {
-  "Running": "abc123",
-  "Dumbbell Row": "def456",
+  "Running": HEVY_EXERCISES.RUNNING,
+  "Dumbbell Row": HEVY_EXERCISES.DUMBBELL_ROW,
   // ...
 };
 ```
+
+Any exercise left as `""` will be skipped during import.
 
 ### Step 4 — Run the import
 
@@ -58,7 +72,7 @@ export const EXERCISE_MAP: Record<string, string> = {
 deno task import
 ```
 
-Workouts are sent one day at a time with a 1.5-second delay between requests to respect Hevy's rate limits. Exercises not found in the map are skipped with a warning.
+Workouts are sent one day at a time with a 1.5-second delay between requests to respect Hevy's rate limits.
 
 ## Files
 
@@ -68,7 +82,8 @@ Workouts are sent one day at a time with a 1.5-second delay between requests to 
 | `.env.sample` | Template for `.env` |
 | `config.ts` | Loads env vars, CSV path, API base URL |
 | `generate-map.ts` | Generates `exercise-map.ts` from the CSV |
-| `get-templates.ts` | Lists Hevy exercise templates and their IDs |
+| `generate-template-list.ts` | Fetches Hevy templates and writes `HEVY_EXERCISES.ts` |
+| `HEVY_EXERCISES.ts` | Generated — ALL_CAPS constants mapping to Hevy template IDs |
 | `exercise-map.ts` | Maps Fitbod exercise names → Hevy template IDs |
 | `import.ts` | Main import script |
 | `WorkoutExport.csv` | Your Fitbod data export (not committed) |
