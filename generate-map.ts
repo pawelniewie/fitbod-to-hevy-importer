@@ -34,13 +34,14 @@ function generateExerciseMapTemplate() {
   }
 
   let fileContent = `// exercise-map.ts\n`;
-  fileContent += `// Run generate-template-list.ts first, then fill in each value using HEVY_EXERCISES.KEY\n`;
-  fileContent += `// e.g. "Running": HEVY_EXERCISES.RUNNING\n`;
-  fileContent += `import { HEVY_EXERCISES } from './HEVY_EXERCISES.ts';\n\n`;
-  fileContent += `export const EXERCISE_MAP: Record<string, string> = {\n`;
+  fileContent += `// Run generate-template-list.ts first, then fill in each value using H.KEY\n`;
+  fileContent += `// e.g. "Running": H.RUNNING\n`;
+  fileContent += `import { HEVY_EXERCISES as H } from './HEVY_EXERCISES.ts';\n\n`;
+  fileContent += `const DEFAULT_EXERCISE = undefined;\n\n`;
+  fileContent += `export const EXERCISE_MAP: Record<string, string | undefined> = {\n`;
 
   for (const ex of uniqueExercises) {
-    fileContent += `  "${ex}": "",\n`;
+    fileContent += `  "${ex}": DEFAULT_EXERCISE,\n`;
   }
 
   fileContent += `};\n`;
