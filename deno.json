@@ -3,6 +3,8 @@
     "generate-template-list": "deno run --allow-read --allow-write --allow-net --allow-env src/generate-template-list.ts",
     "suggest-map": "deno run --allow-read --allow-write --allow-env src/suggest-map.ts",
     "build-map": "deno run --allow-read --allow-write --allow-env src/build-map.ts",
+    "create-missing": "deno run --allow-read --allow-net --allow-env src/create-missing.ts",
+    "fetch-images": "deno run --allow-read --allow-write --allow-net --allow-env src/fetch-images.ts",
     "import": "deno run --allow-read --allow-write --allow-net --allow-env src/import.ts"
   }
 }
