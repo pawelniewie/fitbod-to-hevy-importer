@@ -3,7 +3,9 @@
 # via the web app (the API has no image field). Needs agent-browser (npx agent-browser)
 # and a logged-in session named "hevy" — log in once with:
 #
-#   AGENT_BROWSER_SESSION=hevy npx agent-browser --headed open https://hevy.com/login
+#   AGENT_BROWSER_SESSION=hevy npx agent-browser --restore --headed open https://hevy.com/login
+#
+# (--restore saves and reloads the cookies, so the login survives browser restarts.)
 #
 # Skips exercises that already have an image, so it is safe to re-run.
 #
@@ -13,7 +15,7 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p tmp/agent-browser
 export AGENT_BROWSER_SESSION=hevy
-AB="npx agent-browser"
+AB="npx agent-browser --restore"
 KEY=$(grep ^HEVY_API_KEY= .env | cut -d= -f2-)
 
 thumb() { # id -> thumbnail_url or empty
