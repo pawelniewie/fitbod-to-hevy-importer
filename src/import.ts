@@ -28,7 +28,7 @@ const DURATIONS: Record<string, number> = fs.existsSync(DURATIONS_PATH)
 
 // --- Types ---
 type HevySet = {
-  type: "normal" | "warmup" | "failure" | "drop";
+  type: "normal" | "warmup" | "failure" | "dropset";
   weight_kg?: number;
   reps?: number;
   distance_meters?: number;
