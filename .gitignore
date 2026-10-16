@@ -1,2 +1,5 @@
-WorkoutExport.csv
+# Everything personal lives in data/ (your export, generated maps, ledgers, images)
+/data/*
+!/data/.gitkeep
 .env
+tmp/
